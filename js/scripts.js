@@ -137,3 +137,25 @@ window.onload = function(){
     renderCarrito()
   }
 }
+
+document.getElementById("miFormulario").addEventListener("submit", function(event) {
+  let formulario = event.target;
+  let mensajeError = document.getElementById("mensajeError");
+  let camposValidos = true;
+
+  mensajeError.textContent = "";
+
+
+  for (let campo of formulario.elements) {
+    if (campo.type !== "submit" && !campo.value.trim()) {
+      camposValidos = false;
+      break;
+    }
+  }
+
+  if (!camposValidos) {
+    event.preventDefault();
+    mensajeError.textContent = "Por favor, complete todos los campos antes de enviar.";
+  }
+});
+
